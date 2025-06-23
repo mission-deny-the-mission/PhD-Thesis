@@ -1,0 +1,54 @@
+\documentclass{book}
+\usepackage{graphicx} % Required for inserting images
+\usepackage[a4paper, total={6in, 10in}]{geometry}
+\usepackage[acronym]{glossaries}
+\usepackage{standalone}
+\usepackage{hyperref}
+
+%needed to make table from a paper compile in LaTeX
+\usepackage{booktabs}
+\usepackage{makecell}
+\newcommand{\emoji}[2][1.2em]{\raisebox{-0.2\height}{\includegraphics[height=#1]{#2}}}
+
+\usepackage[style=authoryear]{biblatex}
+\addbibresource{references.bib}
+
+\title{PhD thesis on the usage on of AI models in cybersecurity education}
+\author{Harry Hall}
+\date{March 2025 - ongoing}
+
+\makeglossaries
+\input{glossary-entries}
+
+\begin{document}
+
+\frontmatter
+
+\maketitle
+\tableofcontents
+\input{introduction}
+
+
+\mainmatter
+
+\input{literature-review}
+
+\input{aims-and-objectives}
+
+\chapter{Studies}
+\input{study 1 - hackerbot}
+
+\backmatter
+
+
+\printglossary[type=\acronymtype]
+\printbibliography{}
+\section*{Use of AI}
+\paragraph{}Aside from AI models descibred in experiments, AI based grammer assistance was used in the making of this document through a system called Writeful that's part of the Overleaf LaTeX suite.
+
+
+
+\printglossary
+
+
+\end{document}
