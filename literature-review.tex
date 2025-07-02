@@ -15,8 +15,22 @@
 
 \paragraph{}Memory safe languages are languages that in some way attempt to prevent memory vulnerabilities in new software created using them. According to \cite{rina_diane_caballar_move_2023} the majority of modern programming languages are already memory safe. Some recommended modern languages include Rust, Kotlin, and Swift.
 
+\paragraph{}
 
-\section{\acrlong{ai} and \acrlong{llm}}
+\subsection{Web and \acrshort{api} security}
+\paragraph{}\acrfull{api} security is a subset of web security. It helps protect \acrshort{api}s against malicious bots and other attacks. The vast majority of organizations have experienced attack(s) on \acrshort{api}s. \autocite{china_what_2025}
+
+\subsubsection{\acrfull{sqli}}
+
+\paragraph{}\acrfull{sqli} is a technique used to attack interactive websites that rely on \acrfull{sql}. \acrfull{sql} is a family of languages used to facilitate the manipulation of databases and the data inside them. Queries submitted to a SQL database are formatted in this language. \acrfull{sqli} attacks happen primarily when a web application server is connected to a database. In some common techniques malicious \acrshort{sql} queries are placed in the text fields or other input field of a website preceded by an escape sequence. This causes the web application server to send the malicious \acrshort{sql} query to the database where it gets executed. This can be used to delete, modify or retrieve records from the database.
+
+\paragraph{}There are tools and techniques that can be used to detect \acrshort{sqli} attacks. These include looking for queries with ' characters, anomalies, and errors. Payloads with time delays, certain boolean conditions, and OAST payloads are all things to look out for. The majority of \acrshort{sql} injection attacks occur in the \texttt{WHERE} clause in a \texttt{SELECT} statement or query. Other types of statement including \texttt{INSERT} and \texttt{UPDATE} are also commonly attacked along with \texttt{SELECT}. Blind \acrshort{sqli} vulnerabilities are ones in which the value of the statment is not displayed to the attacker. These are a common type of vulnerability, that are more difficult to exploit requiring more advanced skill and technique. \autocite{noauthor_what_nodate}
+
+\paragraph{}In \cite{boyd_sqlrand_2004} an advanced technique to prevent \acrshort{sqli} attacks is discussed which uses a randomized version of the SQL language. This involves having a system on both the web server and database server ends that translates between the randomized SQL and normal SQL. This is done by a proxy on the SQL server side, and a developement tool on the web server side. Randomly generated numbers are added to the ends of keywords contained within the web applications code, and these are required to be present when decoding the SQL; otherwise it is rejected by the proxy.
+
+\subsubsection{Enumeration}
+
+\section{\acrlong{ai} and \acrlong{llm}s}
 Some LLMs that will be discussed in this section:
 
 \begin{itemize}
@@ -26,7 +40,7 @@ Some LLMs that will be discussed in this section:
 \item{Qwen}
 \end{itemize}
 
-\paragraph{} The paper \textcite{deepseek-ai_deepseek-r1_2025} tells us about DeepSeek's R1-Zero and  R1 models. In particular it says that the models are based on the existing DeepSeek V3 MoE model, but have been further trained to allow for \acrfull{cot} reasoning similar to ChatGPT's O1. ChatGPT O1 is one of the first \acrshort{cot} models and is closed source. R1-Zero was created by applying reinforcement learning to the V3 model, which was successful in producing a model with \acrshort{cot} capabilities. It did however have problems such as language mixing. To deal with these issues another model was created, called R1. R1 used both reinforcement learning like R1-Zero, but also used supervised fine tuning with a small amount of cold-start data. This lead to a model without the issues seen in R1-Zero. The paper also covers a technique called distillation: this is where a larger model like R1 is used to train smaller models. In this case distillation was used to train multiple \acrshort{llama} and Qwen base models to have Chain of Thought capabilities. This technique was compared against doing reinforcement learning directly on the \acrshort{llama} and Qwen models to create Chain of Thought reasoning. It was found that the distillation technique resulted in more effective small models. Both the full model and the distilled models have been open-sourced.
+\paragraph{} The paper \textcite{deepseek-ai_deepseek-r1_2025} tells us about DeepSeek's R1-Zero and  R1 models. In particular, it says that the models are based on the existing DeepSeek V3 MoE model, but have been further trained to allow for \acrfull{cot} reasoning similar to ChatGPT's O1. ChatGPT O1 is one of the first \acrshort{cot} models and is closed source. R1-Zero was created by applying reinforcement learning to the V3 model, which was successful in producing a model with \acrshort{cot} capabilities. It did however have problems such as language mixing. To deal with these issues another model was created, called R1. R1 used both reinforcement learning like R1-Zero, but also used supervised fine tuning with a small amount of cold-start data. This lead to a model without the issues seen in R1-Zero. The paper also covers a technique called distillation: this is where a larger model like R1 is used to train smaller models. In this case distillation was used to train multiple \acrshort{llama} and Qwen base models to have Chain of Thought capabilities. This technique was compared against doing reinforcement learning directly on the \acrshort{llama} and Qwen models to create Chain of Thought reasoning. It was found that the distillation technique resulted in more effective small models. Both the full model and the distilled models have been open-sourced.
 
 \paragraph{}Qwen have a series of models they have released. One of these is a reasoning model called qwq. According to their benchmarks from \textcite{} it has performance comparable to the full 671 billion parameter DeepSeek R1 despite only being 32 billion parameters in size. It also compares favorably to OpenAI's o1-mini and the smaller distilled versions of DeepSeek R1. These benchmarks are shown in a copy of their graph in figure \ref{fig:qwq-performance}.
 
@@ -38,8 +52,6 @@ Some LLMs that will be discussed in this section:
 \end{figure}
 
 \paragraph{}\autocite{chen_parallel_2025} is a paper exploring a new way of improving \acrshort{llm} performance through a new kind of scaling rule. Rather than using parameter scaling (making larger dense or MoE models), or inference time scaling (reasoning models), this instead uses one set of parameters being executed in parallel and the results combined together. By creating a model using this method, they were able to come up with something that requires a fraction of the memory than a similar performing dense model while having improved lantecy. Table \ref{tab:compare} is a copy of the table from this paper showing the advantages and disadvantages of different LLM scaling methods.
-
-
 
 %Table from study
 {
